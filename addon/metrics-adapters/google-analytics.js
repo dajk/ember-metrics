@@ -21,7 +21,7 @@ export default BaseAdapter.extend({
 
   init() {
     const config = copy(get(this, 'config'));
-    const { id, sendHitTask, trace } = config;
+    const { id, sendHitTask, trace, setFields } = config;
     let { debug } = config;
 
     assert(`[ember-metrics] You must pass a valid \`id\` to the ${this.toString()} adapter`, id);
@@ -31,17 +31,18 @@ export default BaseAdapter.extend({
     if (debug) { delete config.debug; }
     if (sendHitTask) { delete config.sendHitTask; }
     if (trace) { delete config.trace; }
+    if (setFields) { delete config.setFields; }
 
     const hasOptions = isPresent(Object.keys(config));
 
     if (canUseDOM) {
 
-      /* jshint ignore:start */
+      /* eslint-disable */
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script',`https://www.google-analytics.com/analytics${debug ? '_debug' : ''}.js`,'ga');
-      /* jshint ignore:end */
+      /* eslint-enable */
 
       if (trace === true) {
         window.ga_debug = { trace: true };
@@ -55,6 +56,10 @@ export default BaseAdapter.extend({
 
       if (sendHitTask === false) {
         window.ga('set', 'sendHitTask', null);
+      }
+
+      if (setFields) {
+        window.ga('set', setFields);
       }
 
     }
@@ -102,8 +107,13 @@ export default BaseAdapter.extend({
     const sendEvent = { hitType: 'pageview' };
 
     const event = assign(sendEvent, compactedOptions);
+    for (let key in compactedOptions) {
+      if (compactedOptions.hasOwnProperty(key)) {
+        window.ga('set', key, compactedOptions[key]);
+      }
+    }
     if (canUseDOM) {
-      window.ga('send', event);
+      window.ga('send', sendEvent);
     }
 
     return event;
