@@ -1,7 +1,7 @@
 # ember-metrics
 *Send data to multiple analytics services without re-implementing new API*
 
-![Download count all time](https://img.shields.io/npm/dt/ember-metrics.svg) [![npm version](https://badge.fury.io/js/ember-metrics.svg)](http://badge.fury.io/js/ember-metrics) [![CircleCI](https://circleci.com/gh/poteto/ember-metrics.svg?style=shield)](https://circleci.com/gh/poteto/ember-metrics) [![Ember Observer Score](http://emberobserver.com/badges/ember-metrics.svg)](http://emberobserver.com/addons/ember-metrics)
+![Download count all time](https://img.shields.io/npm/dt/ember-metrics.svg) [![npm version](https://badge.fury.io/js/ember-metrics.svg)](http://badge.fury.io/js/ember-metrics) [![Build Status](https://travis-ci.org/poteto/ember-metrics.svg?branch=master)](https://travis-ci.org/poteto/ember-metrics) [![Ember Observer Score](http://emberobserver.com/badges/ember-metrics.svg)](http://emberobserver.com/addons/ember-metrics) ![Ember Version](https://embadge.io/v1/badge.svg?start=1.13.0)
 
 This addon adds a simple `metrics` service to your app that makes it simple to send data to multiple analytics services without having to implement a new API each time.
 
@@ -38,9 +38,6 @@ Writing your own adapters for currently unsupported analytics services is easy t
 1. `Facebook Pixel`
   - `id`: [ID](https://www.facebook.com/ads/manager/pixel/facebook_pixel/?act=129849836&pid=p1)
 
-1. `KISSMetrics` (WIP)
-1. `CrazyEgg` (WIP)
-
 ## Installing The Addon
 
 For Ember CLI >= `0.2.3`:
@@ -54,9 +51,6 @@ For Ember CLI < `0.2.3`:
 ```shell
 ember install:addon ember-metrics
 ```
-
-## Compatibility
-This addon is tested against the `release`, `beta`, and `canary` channels, as well as `~1.11.0`, and `1.12.1`.
 
 ## Configuration
 
